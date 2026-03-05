@@ -14,7 +14,6 @@ class services_artifacts:
         self.date = date
         self.unfiltered_artifacts = save_path       #unprocessed
         self.filtered_artifacts = final_path
-        # self.days = 1000
         self.key_value = key_value
 
 # service_checking
@@ -281,8 +280,7 @@ class services_artifacts:
 
 
 
-    #def schedule_task(self):
-        #pass
+
 
 
 
