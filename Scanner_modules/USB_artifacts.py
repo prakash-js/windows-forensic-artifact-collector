@@ -74,9 +74,3 @@ class USB_scan:
             pass
 
         print(" [+] USB Artifacts scan completed", flush=True)
-# path = r'C:\Users\jspra\Videos\New folder\\'
-# tool = r'C:\Users\jspra\Videos\Important\forensic_tools\\'
-# USB_T = USB_scan(path,tool,path,12)
-# USB_T.run_USB_tool()
-# USB_T.form_csv()
-# USB_T.refine_csv()
