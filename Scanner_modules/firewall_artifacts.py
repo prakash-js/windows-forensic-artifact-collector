@@ -224,10 +224,4 @@ class firewall_artifacts:
 
 
 
-# save = r"C:\Users\jspra\Videos\New folder\\"
 
-# fa = firewall_artifacts(save,save,100,"both",7)
-# fa.Logfile()
-# fa.filtering_csv()
-# #pyinstaller --console --add-binary "WinPrefetchView.exe;." --add-data "forensic_tools;forensic_tools" --add-data "Scanner_modules;Scanner_modules" --add-data "html_templates;html_templates" --add-data "dbs;dbs" --onefile main.py
-#
