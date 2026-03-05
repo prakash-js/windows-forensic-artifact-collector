@@ -113,6 +113,24 @@ The framework generates the following directories during execution:
 
 ---
 
+## Configuration
+
+Some framework settings can be customized through the configuration file:
+
+`dbs/config_file.py`
+
+This file allows investigators to define whitelisted IP addresses and directories for file analysis.
+
+---
+
+### Firewall Log Whitelisting
+
+Certain IP addresses can be excluded from firewall analysis to reduce noise from trusted infrastructure.
+
+Example configuration:
+
+
+
 ## Documentation
 
 Full official documentation for the framework will be added to this repository soon.
