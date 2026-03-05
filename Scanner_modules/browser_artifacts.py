@@ -165,11 +165,3 @@ class Browser_artifacts:
 
 
 
-# filtered = r'C:\Users\jspra\Pictures\Inves\\'
-# unfiltered = r'C:\Users\jspra\Pictures\Inves\\'
-
-# ps = Browser_artifacts( 1000, filtered,unfiltered)
-# ps.collecting_users()
-# ps.edge_data()
-# # ps.firefox_artifacts()
-# # ps.chrome_artifacts()
