@@ -113,14 +113,14 @@ The framework generates the following directories during execution:
 
 ---
 
+
 ## Configuration
 
 Some framework settings can be customized through the configuration file:
 
 `dbs/config_file.py`
 
-This file allows investigators to define whitelisted IP addresses and directories for file analysis.
-
+This file allows investigators to define whitelisted IP addresses and which directories for file analysis.
 ---
 
 ### Firewall Log Whitelisting
@@ -128,6 +128,41 @@ This file allows investigators to define whitelisted IP addresses and directorie
 Certain IP addresses can be excluded from firewall analysis to reduce noise from trusted infrastructure.
 
 Example configuration:
+
+```
+self.whitelisted_ips = {
+"ip_address": {
+'8.8.8.8',
+'127.0.0.1',
+'8.8.4.4',
+'1.1.1.1',
+'224.0.0.251',
+'ff02::fb',
+'::1'
+}
+}
+```
+
+
+These IP addresses will be ignored during firewall log analysis.
+
+---
+
+### Directory Configuration for File Analysis
+
+Investigators can define directories that should be included in file analysis.
+
+Example:
+```
+self.directory_config = {
+"directories": [
+"add/dir/here/",
+"other/dir/"
+]
+}
+```
+
+The framework will analyze files within these directories and perform hash verification, signature validation, and threat intelligence checks where applicable.
 
 
 
