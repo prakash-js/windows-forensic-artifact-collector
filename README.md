@@ -156,8 +156,8 @@ Example:
 ```
 self.directory_config = {
 "directories": [
-"add/dir/here/",
-"other/dir/"
+"add//dir//here//",
+"other//dir//"
 ]
 }
 ```
