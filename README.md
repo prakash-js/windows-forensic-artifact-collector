@@ -43,14 +43,14 @@ The framework analyzes several Windows forensic artifacts including:
 Scanner_modules/
 forensic_tools/
 html_templates/
-dbs/
+app_data/
 main.py
 ```
 
 - **Scanner_modules** – Modules responsible for artifact collection  
 - **forensic_tools** – External utilities used for specialized artifact parsing  
 - **html_templates** – Templates used to generate HTML reports  
-- **dbs** – Configuration and hash database storage  
+- **app_data** – Configuration and hash database storage  
 
 ---
 
@@ -89,7 +89,7 @@ To enable this feature:
 Example configuration file:
 
 ```
-dbs/config_file.py
+app_data/config_file.py
 ```
 
 Add your API key:
@@ -118,7 +118,7 @@ The framework generates the following directories during execution:
 
 Some framework settings can be customized through the configuration file:
 
-`dbs/config_file.py`
+`app_data/config_file.py`
 
 This file allows investigators to define whitelisted IP addresses and which directories for file analysis.
 ---
