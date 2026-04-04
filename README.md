@@ -18,6 +18,23 @@ The framework gathers key forensic artifacts, performs basic enrichment such as 
 - HTML report generation for investigation
 
 ---
+## Third-Party Tools / Credits
+
+This project utilizes third-party forensic utilities developed by NirSoft for artifact collection and analysis.
+
+The following NirSoft tools are used:
+
+* WinPrefetchView – For analyzing Windows Prefetch files
+* USBLogView – For extracting USB device connection history
+
+These tools are developed by Nir Sofer and are not distributed with this repository due to licensing restrictions.
+They are automatically downloaded from the official NirSoft website during setup.
+
+Official NirSoft Website: https://www.nirsoft.net/
+
+Full credit goes to Nir Sofer for developing and maintaining these forensic utilities.
+
+---
 
 ## Artifacts Collected
 
@@ -56,11 +73,23 @@ main.py
 
 ## Installation
 
-Install the required dependencies:
+Follow the steps below to set up the Windows Forensic Artifact Collector:
 
-```
-pip install -r requirements.txt
-```
+Clone the repository:
+
+`git clone https://github.com/prakash-js/windows-forensic-artifact-collector.git`
+
+Navigate to the project directory:
+
+`cd windows-forensic-artifact-collector`
+
+Install the required Python dependencies:
+
+`pip install -r requirements.txt`
+
+Run the setup script to download required third-party forensic tools:
+
+`python setup.py`
 
 ---
 
