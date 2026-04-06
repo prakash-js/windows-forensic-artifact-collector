@@ -205,7 +205,7 @@ The framework will analyze files within these directories and perform hash verif
 
 ## Project Status
 
-This tool is fully functional for Windows forensic triage and HTML report generation.
+This framework is functional for Windows forensic triage and HTML report generation for the artifacts currently supported.
 
 The project is currently under active development. Additional artifact scanners and analysis features are being added to improve forensic investigation and incident response capabilities.
 
