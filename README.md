@@ -202,11 +202,13 @@ self.directory_config = {
 The framework will analyze files within these directories and perform hash verification, signature validation, and threat intelligence checks where applicable.
 
 ---
+
 ## Project Status
 
 This tool is fully functional for Windows forensic triage and HTML report generation.
 
 The project is currently under active development. Additional artifact scanners and analysis features are being added to improve forensic investigation and incident response capabilities.
+
 ---
 
 ## Documentation
