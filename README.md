@@ -38,7 +38,7 @@ Full credit goes to Nir Sofer for developing and maintaining these forensic util
 
 ## Artifacts Collected
 
-The framework analyzes several Windows forensic artifacts including:
+The framework analyzes several Windows forensic artifacts such as:
 
 - System information
 - Live running processes
@@ -53,7 +53,11 @@ The framework analyzes several Windows forensic artifacts including:
 - Browser download artifacts
 
 ---
+## Compatibility 
 
+**Platform:** Windows 10 / Windows 11 
+
+---
 ## Project Structure
 
 ```
