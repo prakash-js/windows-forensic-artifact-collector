@@ -199,7 +199,7 @@ self.directory_config = {
 }
 ```
 
-The framework will analyze files within these directories and perform hash verification, signature validation, and threat intelligence checks where applicable.
+The tool will analyze files in selected directories, especially recently created or modified files.
 
 ---
 
