@@ -53,9 +53,13 @@ The framework analyzes several Windows forensic artifacts such as:
 - Browser download artifacts
 
 ---
-## Compatibility 
+## Compatibility
 
-**Platform:** Windows 10 / Windows 11 
+| Item | Details |
+|------|---------|
+| Platform | Windows 10, Windows 11 |
+| Python Version | 3.8+ |
+| Privileges | Administrator |
 
 ---
 ## Project Structure
