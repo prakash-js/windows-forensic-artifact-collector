@@ -113,7 +113,7 @@ class Forensic_tool:
     def checking_api(self):
         if self.internet_conn:
             api_key = HA.api_key.get('api_value')
-            if not api_key:
+            if not api_key or api_key == "your_hybrid_analysis_api_key":
                 while True:
                     answer = input("\n There is no API key present. Do you want to add one? (Yes/No)")
                     if answer.lower() == "no":
@@ -195,7 +195,7 @@ class Forensic_tool:
 
     def output_dir(self):
         while True:
-            get_directory = input("\nProvide the output directory name : ").strip()
+            get_directory = input("\nProvide the directory name where output will be saved : ").strip()
 
             if os.path.exists(f"{self.cwd}\\{get_directory}"):
                 print("the project name is already exist")
