@@ -16,7 +16,7 @@ class configuration_file:
 
         #make sure to use character escape  '\\'
         self.directory_config = {
-            "directories": ['C:\\,
+            "directories": ['C:\\',
                             'C:\\Users\\',
                             ]
         }
