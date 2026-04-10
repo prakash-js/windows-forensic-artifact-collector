@@ -29,13 +29,15 @@ def check_internet_connection():
 
 
 def downloading_tool():
+    print("sec")
     arch = platform.architecture()[0]
     current_path = os.getcwd()
     final_path = os.path.join(current_path, 'forensic_tools')
 
-    cmd3 = fr"curl -o {final_path}\\usbdrivelog.zip https://www.nirsoft.net/utils/usbdrivelog.zip"
+    cmd3 = fr"curl -o '{final_path}\\usbdrivelog.zip' https://www.nirsoft.net/utils/usbdrivelog.zip"
     try:
         subprocess.run(["powershell", "-command", cmd3], capture_output=True, text=True)
+
     except Exception as e:
         print(e)
 
@@ -45,17 +47,16 @@ def downloading_tool():
     except Exception as e:
         print(e)
 
-
     if arch == '64bit':
-        cmd = fr"curl -o {final_path}\\winprefetchview.zip https://www.nirsoft.net/utils/winprefetchview-x64.zip"
+        cmd = fr"curl -o '{final_path}\\winprefetchview.zip' https://www.nirsoft.net/utils/winprefetchview-x64.zip"
         try:
-            subprocess.run(["powershell", "-command", cmd],capture_output=True, text=True)
+            subprocess.run(["powershell", "-command", cmd], capture_output=True, text=True)
         except Exception as e:
             print(e)
 
         cmd2 = fr"Expand-Archive -Path '{final_path}\\winprefetchview.zip' -DestinationPath '{final_path}'"
         try:
-            subprocess.run(["powershell", "-command", cmd2],capture_output=True, text=True)
+            subprocess.run(["powershell", "-command", cmd2], capture_output=True, text=True)
         except Exception as e:
             print(e)
 
@@ -77,34 +78,34 @@ def downloading_tool():
             print(e)
 
 
+def check_tools():
+    if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\WinPrefetchView.exe")):
+        print(f"""
+                WinPrefetchView.exe is not found in the expected directory.
 
-    def check_tools():
-        if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\WinPrefetchView.exe")):
-            print(f"""
-                    WinPrefetchView.exe is not found in the expected directory.
-                    
-                    Please download it manually from:
-                    WinPrefetchView: https://www.nirsoft.net/utils/win_prefetch_view.html
-                    
-                    After downloading, extract the contents into the following directory:
-                    {os.path.join(os.getcwd(), "forensic_tools")}
-                    """)
-        else:
-            pass
+                Please download it manually from:
+                WinPrefetchView: https://www.nirsoft.net/utils/win_prefetch_view.html
 
-        if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\USBDriveLog.exe")):
-            print(f"""
-                    USBLogView.exe is not found in the expected directory.
+                After downloading, extract the contents into the following directory:
+                {os.path.join(os.getcwd(), "forensic_tools")}
+                """)
+    else:
+        pass
 
-                    Please download it manually from:
-                    WinPrefetchView: https://www.nirsoft.net/utils/usb_log_view.html
+    if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\USBDriveLog.exe")):
+        print(f"""
+                USBDriveLog.exe is not found in the expected directory.
 
-                    After downloading, extract the contents into the following directory:
-                    {os.path.join(os.getcwd(), "forensic_tools")}
-                    """)
-        else:
-            pass
+                Please download it manually from:
+                USBDriveLog.exe: https://www.nirsoft.net/utils/usbdrivelog.zip
+
+                After downloading, extract the contents into the following directory:
+                {os.path.join(os.getcwd(), "forensic_tools")}
+                """)
+    else:
+        pass
 
 
 check_internet_connection()
 downloading_tool()
+check_tools()
