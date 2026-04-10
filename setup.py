@@ -18,7 +18,7 @@ def check_internet_connection():
             Please download the tools manually based on your system architecture (32-bit or 64-bit) from the official NirSoft pages below:
 
             * WinPrefetchView: https://www.nirsoft.net/utils/win_prefetch_view.html
-            * USBLogView: https://www.nirsoft.net/utils/usb_log_view.html
+            * USBdrivelog: https://www.nirsoft.net/utils/usbdrivelog.zip
 
             After downloading, extract the tools and place them in the appropriate directory before proceeding .
             {os.path.join(os.getcwd(), "forensic_tools")}
@@ -33,13 +33,13 @@ def downloading_tool():
     current_path = os.getcwd()
     final_path = os.path.join(current_path, 'forensic_tools')
 
-    cmd3 = fr"curl -o {final_path}\\usblogview.zip https://www.nirsoft.net/utils/usblogview.zip"
+    cmd3 = fr"curl -o {final_path}\\usbdrivelog.zip https://www.nirsoft.net/utils/usbdrivelog.zip"
     try:
         subprocess.run(["powershell", "-command", cmd3], capture_output=True, text=True)
     except Exception as e:
         print(e)
 
-    cmd4 = fr"Expand-Archive -Path '{final_path}\\usblogview.zip' -DestinationPath '{final_path}'"
+    cmd4 = fr"Expand-Archive -Path '{final_path}\\usbdrivelog.zip' -DestinationPath '{final_path}'"
     try:
         subprocess.run(["powershell", "-command", cmd4], capture_output=True, text=True)
     except Exception as e:
@@ -92,7 +92,7 @@ def downloading_tool():
         else:
             pass
 
-        if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\USBLogView.exe")):
+        if not os.path.exists(os.path.join(os.getcwd(), "forensic_tools\\USBDriveLog.exe")):
             print(f"""
                     USBLogView.exe is not found in the expected directory.
 
