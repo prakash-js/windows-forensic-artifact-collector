@@ -33,6 +33,8 @@ from Scanner_modules.windows_defender_artifacts import Windows_defender_artifact
 from html_templates.defender_artifacts import windows_defender
 from Scanner_modules.USB_artifacts import USB_scan
 from html_templates.usb_artifacts import usb_template
+from html_templates.schedule_task import schedule_task
+from Scanner_modules.schedule_task import Scheduletask
 
 
 HA = configuration_file()
@@ -59,7 +61,7 @@ class Forensic_tool:
         self.conn_count = None
         self.file_recursive = None
         self.start_time = datetime.now().replace(microsecond=0)
-        self.far_started = datetime.now().replace(microsecond=0) - timedelta(days=1)
+        self.far_started = None
 
 
     def check_privilege(self):
@@ -111,7 +113,7 @@ class Forensic_tool:
     def checking_api(self):
         if self.internet_conn:
             api_key = HA.api_key.get('api_value')
-            if not api_key or api_key == "your_hybrid_analysis_api_key":
+            if not api_key:
                 while True:
                     answer = input("\n There is no API key present. Do you want to add one? (Yes/No)")
                     if answer.lower() == "no":
@@ -144,6 +146,8 @@ class Forensic_tool:
                     print("Invalid input. Please select a value starting from 1 and enter a valid integer (e.g., 1, 2, 3) ")
             except Exception as e:
                 print("Invalid input. Please enter a numeric value.")
+            datetime.now().replace(microsecond=0) - timedelta(days=int(self.no_of_days))
+
         while True:
             self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both): ").lower().strip()
             if self.conn_type == "tcp" or  self.conn_type == "udp" or self.conn_type == "both":
@@ -193,7 +197,7 @@ class Forensic_tool:
 
     def output_dir(self):
         while True:
-            get_directory = input("\nProvide the directory name where output will be saved : ").strip()
+            get_directory = input("\nProvide the output directory name : ").strip()
 
             if os.path.exists(f"{self.cwd}\\{get_directory}"):
                 print("the project name is already exist")
@@ -242,6 +246,8 @@ forensic_run.checking_api()
 forensic_run.output_dir()
 forensic_run.tool_requirements()
 
+index_generator(forensic_run.report_path,forensic_run.Investigator_name,forensic_run.start_time,forensic_run.far_started).html_writer()
+
 
 system_info = basic_system_info(forensic_run.sysinfo,forensic_run.real_evidence)
 system_info.collecting_info()
@@ -261,6 +267,14 @@ nc_path1 = f"{forensic_run.real_evidence}\\{db.TCP["csv_name"]}"
 nc_path2 = f"{forensic_run.real_evidence}\\{db.UDP["csv_name"]}"
 network_op(forensic_run.report_path,nc_path1,nc_path2).html_writer_f1()
 
+##Schedule Task
+sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
+sc.executing_command()
+sc.refining()
+
+#Generate Report
+st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
+scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
 
 ##Analysing Firewall Log && Report Section
 firewall_log = firewall_artifacts(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.conn_type,forensic_run.conn_count)
@@ -311,15 +325,6 @@ live_process_module.hash_checking()
 lp_path = f"{forensic_run.real_evidence}\\{db.live_task_db["csv_name"]}"
 process_op(forensic_run.report_path,lp_path).html_writer()
 
-##Schedule Task
-# sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
-# sc.executing_command()
-# sc.refining()
-
-# #Generate Report
-# st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
-# scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
-
 ##Browser history analysing && Report Section
 browser_art = Browser_artifacts(forensic_run.no_of_days,forensic_run.core_evidence,forensic_run.real_evidence)
 browser_art.collecting_users()
@@ -363,7 +368,6 @@ usb_path  = f"{forensic_run.real_evidence}\\{db.USB["csv_name"]}"
 usb_template(forensic_run.report_path,usb_path).html_writer()
 
 
-index_generator(forensic_run.report_path,forensic_run.Investigator_name,forensic_run.start_time,forensic_run.far_started).html_writer()
 
 if forensic_run.save_hash:
     forensic_run.hash_printing_and_saving()
