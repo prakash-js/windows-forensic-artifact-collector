@@ -1,9 +1,12 @@
 class configuration_file:
     def __init__(self):
+
+        #Add your Hybrid Analysis API key here.
         self.api_key = {
             "api_value": "your_hybrid_analysis_api_key"
         }
 
+        # IPs listed below are whitelisted from firewall logs. Users can add more IPs if required.
         self.whitelisted_ips = {
             "ip_address": {'8.8.8.8',
                            '127.0.0.1',
@@ -14,7 +17,8 @@ class configuration_file:
                            '142.251.32.110'}
         }
 
-        #make sure to use character escape  '\\'
+        # Add directories here. Only directories listed in this section will be analyzed.
+        # Use escaped backslashes ('\\')
         self.directory_config = {
             "directories": ['C:\\',
                             'C:\\Users\\',

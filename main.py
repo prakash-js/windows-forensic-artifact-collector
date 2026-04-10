@@ -33,6 +33,8 @@ from Scanner_modules.windows_defender_artifacts import Windows_defender_artifact
 from html_templates.defender_artifacts import windows_defender
 from Scanner_modules.USB_artifacts import USB_scan
 from html_templates.usb_artifacts import usb_template
+from html_templates.schedule_task import schedule_task
+from Scanner_modules.schedule_task import Scheduletask
 
 
 HA = configuration_file()
@@ -59,7 +61,7 @@ class Forensic_tool:
         self.conn_count = None
         self.file_recursive = None
         self.start_time = datetime.now().replace(microsecond=0)
-        self.far_started = datetime.now().replace(microsecond=0) - timedelta(days=1)
+        self.far_started = None
 
 
     def check_privilege(self):
@@ -93,6 +95,7 @@ class Forensic_tool:
         try:
             response = requests.get(url, headers=headers,timeout=6)
         except Exception as HTTPSConnectionPool:
+            self.api_value = False
             print(HTTPSConnectionPool)
             # return False
 
@@ -110,16 +113,16 @@ class Forensic_tool:
 
     def checking_api(self):
         if self.internet_conn:
-            api_key = HA.api_key.get('api_value')
+            api_key = HA.api_key.get('api_key')
             if not api_key or api_key == "your_hybrid_analysis_api_key":
                 while True:
-                    answer = input("\n There is no API key present. Do you want to add one? (Yes/No)")
+                    answer = input("\n There is no API key present. Do you want to add one? (Yes/No) : ")
                     if answer.lower() == "no":
                         print("See the README for instructions on adding the API key manually. File hash analysis is not performed in this scan.")
                         return False
 
                     if answer.lower() == "yes":
-                        api_keys = input("Enter the API key :")
+                        api_keys = input("Enter the API key : ")
                         self.checking_request(api_keys)
                         break
 
@@ -131,7 +134,7 @@ class Forensic_tool:
 
     def tool_requirements(self):
         while True:
-            self.Investigator_name = input("\nEnter the investigator’s name :")
+            self.Investigator_name = input("\nEnter the investigator’s name : ")
             if self.Investigator_name:
                 break
 
@@ -144,8 +147,10 @@ class Forensic_tool:
                     print("Invalid input. Please select a value starting from 1 and enter a valid integer (e.g., 1, 2, 3) ")
             except Exception as e:
                 print("Invalid input. Please enter a numeric value.")
+            self.far_started = datetime.now().replace(microsecond=0) - timedelta(days=int(self.no_of_days))
+
         while True:
-            self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both): ").lower().strip()
+            self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both) : ").lower().strip()
             if self.conn_type == "tcp" or  self.conn_type == "udp" or self.conn_type == "both":
                 break
             else:
@@ -154,7 +159,7 @@ class Forensic_tool:
         while True:
             try:
                 self.conn_count = int(
-                    input("\nWhat is the expected inbound and outbound connection count for each IP? (Enter 0 if unknown): ")
+                    input("\nWhat is the expected inbound and outbound connection count for each IP? (Enter 0 if unknown) : ")
                 )
                 if self.conn_count >= 0:
                     break
@@ -165,7 +170,7 @@ class Forensic_tool:
             ##
         while True:
             answer = input(
-                "\nDo you want to continue the file analysis recursively? (yes or no): "
+                "\nDo you want to continue the file analysis recursively? (yes or no) : "
             ).strip().lower()
 
             if answer == "yes":
@@ -193,7 +198,7 @@ class Forensic_tool:
 
     def output_dir(self):
         while True:
-            get_directory = input("\nProvide the directory name where output will be saved : ").strip()
+            get_directory = input("\nEnter the output directory name to store generated results : ").strip()
 
             if os.path.exists(f"{self.cwd}\\{get_directory}"):
                 print("the project name is already exist")
@@ -230,7 +235,7 @@ class Forensic_tool:
 
         all_hashes = hash_storing.hash_dict
         hash_storing.hash_dict = all_hashes
-        print(all_hashes)
+       # print(all_hashes)
 
 
 #----------calling Modules --------------------------------------------------------------------------------------------
@@ -241,6 +246,8 @@ forensic_run.is_internet_available()
 forensic_run.checking_api()
 forensic_run.output_dir()
 forensic_run.tool_requirements()
+
+index_generator(forensic_run.report_path,forensic_run.Investigator_name,forensic_run.start_time,forensic_run.far_started).html_writer()
 
 
 system_info = basic_system_info(forensic_run.sysinfo,forensic_run.real_evidence)
@@ -260,7 +267,6 @@ TUC.analysing_threat_level()
 nc_path1 = f"{forensic_run.real_evidence}\\{db.TCP["csv_name"]}"
 nc_path2 = f"{forensic_run.real_evidence}\\{db.UDP["csv_name"]}"
 network_op(forensic_run.report_path,nc_path1,nc_path2).html_writer_f1()
-
 
 ##Analysing Firewall Log && Report Section
 firewall_log = firewall_artifacts(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.conn_type,forensic_run.conn_count)
@@ -282,6 +288,15 @@ ps.hash_checking()
 ## Generating Report for Prefetch:
 prefetch_path = f"{forensic_run.real_evidence}\\{db.pref_db["csv_name"]}"
 prefetch_op(forensic_run.report_path, prefetch_path).html_writer()
+
+##Schedule Task
+sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
+sc.executing_command()
+sc.refining()
+
+#Generate Report
+st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
+scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
 
 #System Persistence and Persistence Report Section
 persistence_chk = services_artifacts(forensic_run.core_evidence, forensic_run.real_evidence, forensic_run.no_of_days,forensic_run.api_value)
@@ -310,15 +325,6 @@ live_process_module.hash_checking()
 ##Generating Report
 lp_path = f"{forensic_run.real_evidence}\\{db.live_task_db["csv_name"]}"
 process_op(forensic_run.report_path,lp_path).html_writer()
-
-##Schedule Task
-# sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
-# sc.executing_command()
-# sc.refining()
-
-# #Generate Report
-# st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
-# scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
 
 ##Browser history analysing && Report Section
 browser_art = Browser_artifacts(forensic_run.no_of_days,forensic_run.core_evidence,forensic_run.real_evidence)
@@ -363,7 +369,6 @@ usb_path  = f"{forensic_run.real_evidence}\\{db.USB["csv_name"]}"
 usb_template(forensic_run.report_path,usb_path).html_writer()
 
 
-index_generator(forensic_run.report_path,forensic_run.Investigator_name,forensic_run.start_time,forensic_run.far_started).html_writer()
 
 if forensic_run.save_hash:
     forensic_run.hash_printing_and_saving()

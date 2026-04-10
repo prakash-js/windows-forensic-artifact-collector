@@ -43,6 +43,7 @@ def downloading_tool():
     cmd4 = fr"Expand-Archive -Path '{final_path}\\usbdrivelog.zip' -DestinationPath '{final_path}'"
     try:
         subprocess.run(["powershell", "-command", cmd4], capture_output=True, text=True)
+        print("\n [+] The usbdrivelog tool has been downloaded and extracted successfully.")
     except Exception as e:
         print(e)
 
@@ -56,6 +57,7 @@ def downloading_tool():
         cmd2 = fr"Expand-Archive -Path '{final_path}\\winprefetchview.zip' -DestinationPath '{final_path}'"
         try:
             subprocess.run(["powershell", "-command", cmd2], capture_output=True, text=True)
+            print("\n [+] The WinPrefetchView tool has been downloaded and extracted successfully.")
         except Exception as e:
             print(e)
 
@@ -73,6 +75,7 @@ def downloading_tool():
         cmd2 = fr"Expand-Archive -Path '{final_path}\\winprefetchview.zip' -DestinationPath '{final_path}'"
         try:
             subprocess.run(["powershell", "-command", cmd2], capture_output=True, text=True)
+            print("\n [+] The WinPrefetchView tool has been downloaded and extracted successfully.")
         except Exception as e:
             print(e)
 
@@ -103,6 +106,10 @@ def check_tools():
                 """)
     else:
         pass
+
+    if os.path.exists(os.path.join(os.getcwd(), "forensic_tools", "WinPrefetchView.exe")) \
+       and os.path.exists(os.path.join(os.getcwd(), "forensic_tools", "USBDriveLog.exe")):
+        print("\n [+] The setup has completed successfully. \n")
 
 
 check_internet_connection()

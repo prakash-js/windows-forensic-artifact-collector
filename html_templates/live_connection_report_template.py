@@ -60,7 +60,16 @@ class network_op:
 
         # WD missing
         if not os.path.exists(self.TCP):
-            self.html += """
+            self.html += f"""
+               <h1>{db.TCP["Heading"]}</h2>
+                <h2>{db.TCP["Title"]}</h2>
+                <p>
+                    {db.TCP["first_para"]}
+                </p>
+
+                    <p>
+                    {db.TCP["second_para"]}
+                </p>
             <h2 style="color:#555; font-family: Arial, sans-serif; margin-top:20px;">
                 No Related Artifacts Were Identified on This System
             </h2>
@@ -117,7 +126,18 @@ class network_op:
     def html_writer_f2(self):
 
         if not os.path.exists(self.UDP):
-            self.html += """
+            self.html += f"""
+            <br>
+            <hr>
+            <h2>{db.UDP["Title"]}</h2>
+
+            <p>
+                {db.UDP["first_para"]}
+            </p>
+
+                <p>
+                {db.UDP["second_para"]}
+            </p>
             <br>
             <hr>
             <br>

@@ -95,7 +95,10 @@ class index_generator:
                 <td><a href="#networkconnection" onclick="loadPage('live_task_report.html','not_found.html')">Live Task</a></td>
                 <td><a href="#files" onclick="loadPage('dir_file_final.html')"> File Artifacts</a></td>
                 <td><a href="#Browser" onclick="loadPage('win_def_report.html')">Windows defender  Artifacts</a></td>
-                
+            </tr>
+            <tr>
+                 <td><a href="#Browser" onclick="loadPage('schedule_report.html')">Scheduled Tasks Artifacts</a></td
+
             </tr>
             
 
@@ -118,4 +121,4 @@ class index_generator:
         with open(self.html_path,'w',encoding="UTF-8", errors="ignore") as f:
             f.write(html)
 
-        print(" [+] Index File generated")
+        print("\n [+] Index File generated")
