@@ -146,7 +146,7 @@ class Forensic_tool:
                     print("Invalid input. Please select a value starting from 1 and enter a valid integer (e.g., 1, 2, 3) ")
             except Exception as e:
                 print("Invalid input. Please enter a numeric value.")
-            datetime.now().replace(microsecond=0) - timedelta(days=int(self.no_of_days))
+            self.far_started = datetime.now().replace(microsecond=0) - timedelta(days=int(self.no_of_days))
 
         while True:
             self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both): ").lower().strip()
