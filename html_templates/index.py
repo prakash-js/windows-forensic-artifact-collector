@@ -97,7 +97,7 @@ class index_generator:
                 <td><a href="#Browser" onclick="loadPage('win_def_report.html')">Windows defender  Artifacts</a></td>
             </tr>
             <tr>
-                 <td><a href="#Browser" onclick="loadPage('schedule_report.html')">Windows defender  Artifacts</a></td
+                 <td><a href="#Browser" onclick="loadPage('schedule_report.html')">Scheduled Tasks Artifacts</a></td
 
             </tr>
             
