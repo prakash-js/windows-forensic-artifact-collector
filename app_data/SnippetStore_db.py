@@ -135,5 +135,11 @@ class SnippetStore:
             "Heading"  : "PowerShell Artifacts",
             "first_para" : "PowerShell artifacts record commands executed through PowerShell on a Windows system. The ConsoleHost_history.txt file stores the command history from interactive sessions, allowing investigators to review previously executed commands. Analyzing this artifact helps identify administrative actions, script execution, and potentially suspicious activity performed through PowerShell.",
             "csv_name" : "powershell_history.csv"
+        }
 
+
+        self.schedule = {
+            "Heading" : "Schedule Task Artifacts",
+            "first_para" : fr"Scheduled Tasks are an important Windows forensic artifact used to execute programs on a defined schedule or trigger. They are stored in C:\Windows\System32\Tasks and linked with registry entries, providing details like the executable or COM handler (CLSID → DLL), triggers, and run times. From an analysis perspective, they are commonly abused for persistence. Investigators should verify the executable/DLL path, check digital signatures, and correlate file metadata—especially whether the file creation or last modified time falls within a suspicious date range. Tasks pointing to recently created files or user-controlled locations can indicate potential malicious activity.",
+            "csv_name" : "proc_schedule.csv"
         }
