@@ -118,4 +118,4 @@ class index_generator:
         with open(self.html_path,'w',encoding="UTF-8", errors="ignore") as f:
             f.write(html)
 
-        print(" [+] Index File generated")
+        print("/n [+] Index File generated")
