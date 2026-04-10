@@ -267,15 +267,6 @@ nc_path1 = f"{forensic_run.real_evidence}\\{db.TCP["csv_name"]}"
 nc_path2 = f"{forensic_run.real_evidence}\\{db.UDP["csv_name"]}"
 network_op(forensic_run.report_path,nc_path1,nc_path2).html_writer_f1()
 
-##Schedule Task
-sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
-sc.executing_command()
-sc.refining()
-
-#Generate Report
-st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
-scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
-
 ##Analysing Firewall Log && Report Section
 firewall_log = firewall_artifacts(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.conn_type,forensic_run.conn_count)
 firewall_log.Logfile()
@@ -296,6 +287,15 @@ ps.hash_checking()
 ## Generating Report for Prefetch:
 prefetch_path = f"{forensic_run.real_evidence}\\{db.pref_db["csv_name"]}"
 prefetch_op(forensic_run.report_path, prefetch_path).html_writer()
+
+##Schedule Task
+sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
+sc.executing_command()
+sc.refining()
+
+#Generate Report
+st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
+scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
 
 #System Persistence and Persistence Report Section
 persistence_chk = services_artifacts(forensic_run.core_evidence, forensic_run.real_evidence, forensic_run.no_of_days,forensic_run.api_value)
