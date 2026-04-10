@@ -115,13 +115,13 @@ class Forensic_tool:
             api_key = HA.api_key.get('api_value')
             if not api_key or api_key == "your_hybrid_analysis_api_key":
                 while True:
-                    answer = input("\n There is no API key present. Do you want to add one? (Yes/No)")
+                    answer = input("\n There is no API key present. Do you want to add one? (Yes/No) : ")
                     if answer.lower() == "no":
                         print("See the README for instructions on adding the API key manually. File hash analysis is not performed in this scan.")
                         return False
 
                     if answer.lower() == "yes":
-                        api_keys = input("Enter the API key :")
+                        api_keys = input("Enter the API key : ")
                         self.checking_request(api_keys)
                         break
 
@@ -133,7 +133,7 @@ class Forensic_tool:
 
     def tool_requirements(self):
         while True:
-            self.Investigator_name = input("\nEnter the investigator’s name :")
+            self.Investigator_name = input("\nEnter the investigator’s name : ")
             if self.Investigator_name:
                 break
 
@@ -149,7 +149,7 @@ class Forensic_tool:
             self.far_started = datetime.now().replace(microsecond=0) - timedelta(days=int(self.no_of_days))
 
         while True:
-            self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both): ").lower().strip()
+            self.conn_type = input("\nChoose which firewall logs to collect (TCP / UDP / Both) : ").lower().strip()
             if self.conn_type == "tcp" or  self.conn_type == "udp" or self.conn_type == "both":
                 break
             else:
@@ -158,7 +158,7 @@ class Forensic_tool:
         while True:
             try:
                 self.conn_count = int(
-                    input("\nWhat is the expected inbound and outbound connection count for each IP? (Enter 0 if unknown): ")
+                    input("\nWhat is the expected inbound and outbound connection count for each IP? (Enter 0 if unknown) : ")
                 )
                 if self.conn_count >= 0:
                     break
@@ -169,7 +169,7 @@ class Forensic_tool:
             ##
         while True:
             answer = input(
-                "\nDo you want to continue the file analysis recursively? (yes or no): "
+                "\nDo you want to continue the file analysis recursively? (yes or no) : "
             ).strip().lower()
 
             if answer == "yes":
@@ -197,7 +197,7 @@ class Forensic_tool:
 
     def output_dir(self):
         while True:
-            get_directory = input("\nProvide the output directory name : ").strip()
+            get_directory = input("\nEnter the output directory name to store generated results : ").strip()
 
             if os.path.exists(f"{self.cwd}\\{get_directory}"):
                 print("the project name is already exist")
