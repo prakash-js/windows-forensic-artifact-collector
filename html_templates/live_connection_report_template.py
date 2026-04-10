@@ -117,7 +117,17 @@ class network_op:
     def html_writer_f2(self):
 
         if not os.path.exists(self.UDP):
-            self.html += """
+            self.html += f"""
+            <br>
+            <h2>{db.UDP["Title"]}</h2>
+
+            <p>
+                {db.UDP["first_para"]}
+            </p>
+
+                <p>
+                {db.UDP["second_para"]}
+            </p>
             <br>
             <hr>
             <br>
