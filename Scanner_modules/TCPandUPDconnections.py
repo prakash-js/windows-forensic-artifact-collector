@@ -1,3 +1,4 @@
+import os
 import subprocess
 import csv
 from app_data.hash_db import hashStoring
@@ -103,6 +104,8 @@ class TCP_and_UDP:
 
 
     def analysing_threat_level(self):
+        count_tcp = None
+        count_udp = None
         check_files = [self.TCP_Core_analysis,self.UDP_Core_analysis]
         op_files = [self.TCP_filtered,self.UDP_filtered]
 
@@ -162,5 +165,21 @@ class TCP_and_UDP:
                 with open(op_files[idx_file], "w", newline="", encoding="utf-8") as f:
                     writer = csv.writer(f)
                     writer.writerows(rows)
+
+
+        with open(self.TCP_filtered, "r", encoding="utf-8") as f:
+            count_tcp = sum(1 for _ in f)
+            f.close()
+        if count_tcp == 1:
+            os.remove(self.TCP_filtered)
+
+
+        with open(self.UDP_filtered, "r", encoding="utf-8") as f:
+            count_udp = sum(1 for _ in f)
+            f.close()
+        if count_udp == 1:
+            os.remove(self.UDP_filtered)
+
+
 
         print(" [+] Live Connection artifacts scan completed", flush=True)
