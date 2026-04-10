@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 
 ## importing all modules of the Project
 
-from  app_data.api_checker import ApiConnectionHandler
 from app_data.hash_db import hashStoring
 from Scanner_modules.basic_sys_info import basic_system_info
 from html_templates.index import index_generator
@@ -39,7 +38,6 @@ from html_templates.usb_artifacts import usb_template
 HA = configuration_file()
 hash_storing = hashStoring()
 db = SnippetStore()
-ap = ApiConnectionHandler()
 
 
 class Forensic_tool:
@@ -312,6 +310,15 @@ live_process_module.hash_checking()
 ##Generating Report
 lp_path = f"{forensic_run.real_evidence}\\{db.live_task_db["csv_name"]}"
 process_op(forensic_run.report_path,lp_path).html_writer()
+
+##Schedule Task
+# sc = Scheduletask(forensic_run.core_evidence,forensic_run.real_evidence,forensic_run.no_of_days,forensic_run.api_value)
+# sc.executing_command()
+# sc.refining()
+
+# #Generate Report
+# st_path1 = f"{forensic_run.real_evidence}\\{db.schedule["csv_name"]}"
+# scr = schedule_task(forensic_run.report_path, st_path1).html_writer()
 
 ##Browser history analysing && Report Section
 browser_art = Browser_artifacts(forensic_run.no_of_days,forensic_run.core_evidence,forensic_run.real_evidence)
