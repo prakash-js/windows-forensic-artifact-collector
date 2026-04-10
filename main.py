@@ -95,6 +95,7 @@ class Forensic_tool:
         try:
             response = requests.get(url, headers=headers,timeout=6)
         except Exception as HTTPSConnectionPool:
+            self.api_value = False
             print(HTTPSConnectionPool)
             # return False
 
