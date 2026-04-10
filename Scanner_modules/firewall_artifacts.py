@@ -156,6 +156,8 @@ class firewall_artifacts:
 
 
     def filtering_csv(self):
+        count_outbound = None
+        count_inbound = None
         core_evidence_list = [self.core_file_path_inbound,self.core_file_path_outbound]
         real_evidence_list = [self.real_file_path_inbound,self.real_file_path_outbound]
 
@@ -223,6 +225,19 @@ class firewall_artifacts:
                 file_1.close()
             except Exception as e:
                 print(e)
+
+        with open( self.real_file_path_inbound, "r", encoding="utf-8") as f:
+            count_inbound = sum(1 for _ in f)
+        if count_inbound == 1:
+            os.remove(self.real_file_path_inbound)
+
+        with open(self.real_file_path_outbound, "r", encoding="utf-8") as f:
+            count_outbound = sum(1 for _ in f)
+        if count_outbound == 1:
+            os.remove(self.real_file_path_outbound)
+
+
+
         print(" [+] Firewall artifacts scan completed", flush=True)
 
 
