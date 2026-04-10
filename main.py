@@ -234,7 +234,7 @@ class Forensic_tool:
 
         all_hashes = hash_storing.hash_dict
         hash_storing.hash_dict = all_hashes
-        print(all_hashes)
+       # print(all_hashes)
 
 
 #----------calling Modules --------------------------------------------------------------------------------------------
