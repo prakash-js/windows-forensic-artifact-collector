@@ -29,7 +29,6 @@ def check_internet_connection():
 
 
 def downloading_tool():
-    print("sec")
     arch = platform.architecture()[0]
     current_path = os.getcwd()
     final_path = os.path.join(current_path, 'forensic_tools')
