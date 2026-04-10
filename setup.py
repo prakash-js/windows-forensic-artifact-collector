@@ -109,7 +109,7 @@ def check_tools():
 
     if os.path.exists(os.path.join(os.getcwd(), "forensic_tools", "WinPrefetchView.exe")) \
        and os.path.exists(os.path.join(os.getcwd(), "forensic_tools", "USBDriveLog.exe")):
-        print("\n[+] The setup has completed successfully.")
+        print("\n [+] The setup has completed successfully. \n")
 
 
 check_internet_connection()
