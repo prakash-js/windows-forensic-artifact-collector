@@ -49,6 +49,7 @@ The framework analyzes several Windows forensic artifacts such as:
   - Startup folder entries
   - Newly created services
   - Registry Run keys
+  - Scheduled Tasks 
 - USB device activity
 - Browser download artifacts
 
