@@ -69,10 +69,10 @@ class schedule_task:
             </head>
             <body>
 
-            <h2>{db.pref_db["Heading"]}</h2>
+            <h2>{db.schedule["Heading"]}</h2>
 
             <p>
-                {db.pref_db["first_para"]}
+                {db.schedule["first_para"]}
             </p>
 
             <table>
