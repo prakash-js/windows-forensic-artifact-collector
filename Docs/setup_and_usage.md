@@ -1,3 +1,68 @@
+#  Setup & Usage
+
+# Setup Guide
+## Prerequisites
+
+Before running the tool, install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Third-Party Tools — NirSoft
+
+This project uses forensic utilities developed by **[NirSoft](https://www.nirsoft.net/)** for artifact collection and analysis.
+
+### Tools Used
+
+| Tool | Purpose |
+|------|---------|
+| **WinPrefetchView** | Analyzing Windows Prefetch files |
+| **USBDriveLog** | Extracting USB device connection history |
+
+> These tools are developed by **Nir Sofer** and are **not distributed with this repository** due to licensing restrictions.
+
+---
+
+## Installing NirSoft Tools
+
+You have two options:
+
+### Option 1 — Automatic Setup (Recommended)
+
+Run the setup script, which will automatically download the required tools from the official NirSoft website:
+
+```bash
+python setup.py
+```
+
+### Option 2 — Manual Download
+
+Download and extract the tools manually from the links below, then place the executables inside:
+
+```
+windows-forensic-artifact-collector/forensic_tools/
+```
+
+| Tool | Download Link |
+|------|--------------|
+| **USBDriveLog** | https://www.nirsoft.net/utils/usbdrivelog.zip |
+| **WinPrefetchView** | https://www.nirsoft.net/utils/win_prefetch_view.html *(download based on your system architecture)* |
+
+> **Note:** Make sure to select the correct architecture (32-bit or 64-bit) for WinPrefetchView based on your system.
+
+---
+
+## Credits
+
+Full credit goes to **Nir Sofer** for developing and maintaining these forensic utilities.
+
+🌐 Official NirSoft Website: [https://www.nirsoft.net/](https://www.nirsoft.net/)
+
+
+
 # Usage Guide
 
 ## Run the Tool
