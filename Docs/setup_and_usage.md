@@ -95,9 +95,9 @@ After providing all inputs, the tool will start the scanning process.
 
 ---
 
-### Sample Output
+## Scan Progress (Console Output)
 
-```text id="y6k2md"
+```text i
 [+] Index File generated
 
 [+] Basic Information collection scan completed
