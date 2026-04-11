@@ -139,3 +139,7 @@ HTML report generated: Windows Defender Artifacts
 
 [+] USB Artifacts scan completed
 HTML report generated: USB device artifacts
+
+ Artifact Analysis Completed Successfully
+ 
+```
