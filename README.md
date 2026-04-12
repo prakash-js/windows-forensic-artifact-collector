@@ -214,7 +214,7 @@ The project is currently under active development. Additional artifact scanners 
 
 ## Documentation
 
-Full official documentation for the framework will be added to this repository soon.
+Documentation is currently being added and updated in this repository [here](https://github.com/prakash-js/windows-forensic-artifact-collector/tree/main/Docs).
 
 ---
 
